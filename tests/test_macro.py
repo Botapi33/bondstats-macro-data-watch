@@ -26,13 +26,21 @@ ok("https sources", all(i["sourceUrl"].startswith("https://") for i in inds))
 ok("no consensus methodology", "no consensus" in data["meta"]["methodology"].lower())
 ok("all values finite", all(isinstance(i["value"], (int,float)) for i in inds))
 
-# Current official-source seed values verified 28 Aug 2026
-expected = {
- "US_CPI":3.4, "US_CORE_CPI":2.5, "US_PAYROLLS":-23, "US_UNEMP":4.1,
- "US_PCE":3.7, "US_CORE_PCE":3.3, "US_GDP":1.5,
- "EA_HICP":2.9, "EA_CORE_HICP":2.5, "EA_UNEMP":6.3, "EA_GDP":0.4
+# Live observations must not be compared with historical seed values.
+# Historical parser behavior is already covered by the fixture tests below.
+expected_ids = {
+    "US_CPI", "US_CORE_CPI", "US_PAYROLLS", "US_UNEMP",
+    "US_PCE", "US_CORE_PCE", "US_GDP",
+    "EA_HICP", "EA_CORE_HICP", "EA_UNEMP", "EA_GDP",
 }
-ok("verified current seed values", all(byid[k]["value"] == v for k,v in expected.items()))
+ok("required indicator ids", set(byid) == expected_ids)
+
+# Reject NaN/Infinity and booleans (bool is an int subclass in Python).
+import math
+ok("finite numeric live observations", all(
+    type(i.get("value")) in (int, float) and math.isfinite(i["value"])
+    for i in inds
+))
 
 # BLS parser fixture
 bls = json.loads((ROOT/"tests/fixtures/bls.json").read_text())
