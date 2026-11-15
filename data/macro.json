@@ -2,7 +2,7 @@
   "meta": {
     "product": "BondStats Macro Data Watch",
     "version": "1.0.0",
-    "lastChecked": "2026-11-15T06:48:40Z",
+    "lastChecked": "2026-11-15T18:57:39Z",
     "lastSuccessfulDataUpdate": "2026-10-29T22:50:51Z",
     "lastUpdated": "2026-10-29T22:50:51Z",
     "healthySources": 1,
@@ -236,16 +236,16 @@
   "sourceHealth": {
     "BLS": {
       "state": "degraded",
-      "lastChecked": "2026-11-15T06:48:40Z",
+      "lastChecked": "2026-11-15T18:57:39Z",
       "error": "could not convert string to float: '-'"
     },
     "BEA": {
       "state": "ok",
-      "lastChecked": "2026-11-15T06:48:40Z"
+      "lastChecked": "2026-11-15T18:57:39Z"
     },
     "EUROSTAT": {
       "state": "degraded",
-      "lastChecked": "2026-11-15T06:48:40Z",
+      "lastChecked": "2026-11-15T18:57:39Z",
       "error": "Eurostat query not singleton on geo"
     }
   }
